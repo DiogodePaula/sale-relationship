@@ -5,7 +5,7 @@ import databaseConfig from '../config/database';
 import Product from '../app/models/Product';
 import Brand from '../app/models/Brand';
 
-const models = [Product, Brand];
+const models = [Brand, Product];
 
 class DataBase {
   constructor() {
@@ -17,7 +17,11 @@ class DataBase {
 
     this.connection = new Sequelize(process.env.DATABASE_URL, databaseConfig);
 
-    models.map((model) => model.init(this.connection));
+    models
+      .map((model) => model.init(this.connection))
+      .map(
+        (model) => model.associate && model.associate(this.connection.models)
+      );
   }
 }
 

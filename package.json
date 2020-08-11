@@ -6,7 +6,8 @@
   "author": "CristianRauber <cristian@growdev.com.br>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -3,7 +3,23 @@ import Brand from '../models/Brand';
 class BrandController {
   async index(req, res) { }
 
-  async show(req, res) { }
+  async show(req, res) {
+    try {
+      const { uid } = req.params;
+
+      const product = await Brand.findByPk(uid, {
+        attributes: ['uid', 'name', 'quantity'],
+        include: {
+          model: Brand,
+          as: 'brand',
+          attributes: ['uid', 'name'],
+        },
+      });
+      return res.json({ product });
+    } catch (error) {
+      return res.json({ error });
+    }
+  }
 
   async store(req, res) {
     try {
@@ -23,3 +39,5 @@ class BrandController {
 
   async delete(req, res) { }
 }
+
+export default new BrandController();

@@ -1,9 +1,9 @@
 {
-  "name": "structure-api",
+  "name": "sale-relationship",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/cristian-growdev/structure-api.git",
-  "author": "CristianRauber <cristian@growdev.com.br>",
+  "repository": "https://github.com/DiogodePaula/sale-relationship.git",
+  "author": "DiogodePaula <cristian@growdev.com.br>",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",

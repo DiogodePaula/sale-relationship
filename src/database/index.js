@@ -13,7 +13,8 @@ class DataBase {
   }
 
   init() {
-    console.log('iniciou o banco');
+    // eslint-disable-next-line no-console
+    console.log('BOMBANDO');
 
     this.connection = new Sequelize(process.env.DATABASE_URL, databaseConfig);
 

@@ -1,21 +1,29 @@
 import Brand from '../models/Brand';
 
 class BrandController {
-  async index(req, res) { }
+  async index(req, res) {
+    try {
+      const brand = await Brand.findAll();
+
+      return res.json({ brand });
+    } catch (error) {
+      return res.json({ error });
+    }
+  }
 
   async show(req, res) {
     try {
       const { uid } = req.params;
 
-      const product = await Brand.findByPk(uid, {
-        attributes: ['uid', 'name', 'quantity'],
-        include: {
-          model: Brand,
-          as: 'brand',
-          attributes: ['uid', 'name'],
-        },
+      const brand = await Brand.findByPk(uid, {
+        // attributes: ['uid', 'name'],
+        // include: {
+        //   model: Brand,
+        //   as: 'brand',
+        //   attributes: ['uid', 'name'],
+        // },
       });
-      return res.json({ product });
+      return res.json({ brand });
     } catch (error) {
       return res.json({ error });
     }
@@ -35,9 +43,35 @@ class BrandController {
     }
   }
 
-  async update(req, res) { }
+  async update(req, res) {
+    try {
+      const { uid } = req.params;
 
-  async delete(req, res) { }
+      const updated = await Brand.update(req.body, { where: { uid } });
+
+      if (!updated) {
+        throw Error('Usuário não encontrado');
+      }
+      return res.json({ result: 'DATA_UPDATED' });
+    } catch (error) {
+      return req.json({ error });
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const { uid } = req.params;
+      const deleted = await Brand.destroy({ where: { uid } });
+
+      if (!deleted) {
+        throw Error('Não encontrado');
+      }
+
+      return res.json({ deleted });
+    } catch (error) {
+      return res.json({ error });
+    }
+  }
 }
 
 export default new BrandController();

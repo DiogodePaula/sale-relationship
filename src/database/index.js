@@ -26,3 +26,6 @@ class DataBase {
 }
 
 export default new DataBase();
+
+// model.associate: é para as models que não tem associação no banco, posso ter end points que nunca terão associação e ficaram sozinhos
+// model.associate(com parâmetros): é para as tabelas que tem associação no banco

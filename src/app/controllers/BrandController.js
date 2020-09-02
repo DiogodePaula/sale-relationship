@@ -15,14 +15,8 @@ class BrandController {
     try {
       const { uid } = req.params;
 
-      const brand = await Brand.findByPk(uid, {
-        // attributes: ['uid', 'name'],
-        // include: {
-        //   model: Brand,
-        //   as: 'brand',
-        //   attributes: ['uid', 'name'],
-        // },
-      });
+      const brand = await Brand.findByPk(uid);
+
       return res.json({ brand });
     } catch (error) {
       return res.json({ error });
@@ -69,7 +63,11 @@ class BrandController {
 
       return res.json({ deleted });
     } catch (error) {
-      return res.json({ error });
+      const response = {
+        message: 'dados incorretos',
+        error,
+      };
+      return res.json({ response });
     }
   }
 }

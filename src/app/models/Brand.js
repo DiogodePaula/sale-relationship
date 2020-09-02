@@ -17,6 +17,7 @@ class Brand extends Model {
       },
       {
         sequelize,
+        // tablesName: 'brands', esse método "força" o sequelize a procurar por esse nome.
       }
     );
     return this;

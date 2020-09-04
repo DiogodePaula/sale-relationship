@@ -1,4 +1,5 @@
 import Brand from '../models/Brand';
+import Product from '../models/Product';
 
 class BrandController {
   async index(req, res) {
@@ -15,7 +16,16 @@ class BrandController {
     try {
       const { uid } = req.params;
 
-      const brand = await Brand.findByPk(uid);
+      const brand = await Brand.findByPk(uid, {
+        attributes: ['uid', 'name'],
+        include: [
+          {
+            model: Product,
+            as: 'product',
+            attributes: ['uid', 'name', 'quantity'],
+          },
+        ],
+      });
 
       return res.json({ brand });
     } catch (error) {

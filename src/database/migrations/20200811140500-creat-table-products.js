@@ -14,16 +14,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      brand_uid: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'brands',
-          key: 'uid',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        allowNull: false,
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

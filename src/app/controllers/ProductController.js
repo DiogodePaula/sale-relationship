@@ -17,13 +17,14 @@ class ProductController {
       const { uid } = req.params;
 
       const product = await Product.findByPk(uid, {
-        // selecionar os atributos que eu quero que apareça
         attributes: ['uid', 'name', 'quantity'],
-        include: {
-          model: Brand,
-          as: 'brand',
-          attributes: ['uid', 'name'],
-        },
+        // include: [
+        //   {
+        //     model: Brand,
+        //     as: 'brand',
+        //     attributes: ['uid', 'name'],
+        //   },
+        // ],
       });
       return res.json({ product });
     } catch (error) {

@@ -18,16 +18,6 @@ class Product extends Model {
           allowNull: false,
           type: Sequelize.INTEGER,
         },
-        brand_uid: {
-          type: Sequelize.UUID,
-          allowNull: false,
-          references: {
-            model: 'brands',
-            key: 'uid',
-          },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-        },
       },
       {
         sequelize,
@@ -37,12 +27,12 @@ class Product extends Model {
   }
 
   //
-  static associate(models) {
-    this.belongsTo(models.Brand, {
-      as: 'brand',
-      foreignKey: 'brand_uid',
-    });
-  }
+  // static associate(models) {
+  //   this.belongsTo(models.Brand, {
+  //     as: 'brand',
+  //     foreignKey: 'brand_uid',
+  //   });
+  // }
 }
 
 export default Product;

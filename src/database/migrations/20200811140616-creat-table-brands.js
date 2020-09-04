@@ -10,6 +10,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      product_uid: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'products',
+          key: 'uid',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
